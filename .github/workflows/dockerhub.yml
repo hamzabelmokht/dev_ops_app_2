@@ -28,15 +28,3 @@ jobs:
           tags: |
             hamzabelmo/devops_project2:latest
             hamzabelmo/devops_project2:v1
-
-      - name: Build and push MySQL Docker image
-        uses: docker/build-push-action@v2
-        with:
-          context: path/to/mysql/dockerfile
-          push: true
-          platforms: linux/amd64,linux/arm64
-          tags: |
-            hamzabelmo/mysql_image:latest
-            hamzabelmo/mysql_image:v1
-        env:
-          DOCKER_PASSWORD: ${{ secrets.DOCKERHUB_TOKEN }}
