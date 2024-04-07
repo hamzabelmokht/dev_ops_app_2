@@ -1,5 +1,6 @@
 from flask import Flask, render_template, request
 from flask_mysqldb import MySQL
+import uvicorn
 
 app = Flask(__name__)
 
@@ -25,5 +26,5 @@ def add():
         cur.close()
     return render_template('index.html')
 
-#if __name__ == '__main__':
- #   app.run(host='0.0.0.0', port=3000, debug=True)
+if __name__ == '__main__':
+    uvicorn.run(app, host='52.5.65.25', port=5000)
