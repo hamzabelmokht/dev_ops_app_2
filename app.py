@@ -27,4 +27,4 @@ def add():
     return render_template('index.html')
 
 if __name__ == '__main__':
-    uvicorn.run(app, host='52.5.65.25', port=5000)
+    uvicorn.run(app, host='0.0.0.0', port=5000)
