@@ -4,7 +4,7 @@ from asgiref.wsgi import WsgiToAsgi
 
 app = Flask(__name__)
 
-app.config['MYSQL_HOST'] = 'mysqlcontainer'
+app.config['MYSQL_HOST'] = 'mysql-container'
 app.config['MYSQL_PORT'] = 3306  
 app.config['MYSQL_USER'] = 'root'
 app.config['MYSQL_PASSWORD'] = 'hamza'
