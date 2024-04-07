@@ -19,7 +19,7 @@ def add():
     if request.method == 'POST':
         data = request.form['data']
         cur = mysql.connection.cursor()
-        cur.execute("INSERT INTO your_table_name (column_name) VALUES (%s)", [data])
+        cur.execute("INSERT INTO app_list (list) VALUES (%s)", [data])
         mysql.connection.commit()
         cur.close()
     return render_template('index.html')
