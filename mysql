@@ -1,8 +1,0 @@
-FROM mysql:latest
-
-# Copy initialization scripts
-COPY appdb.sql /docker-entrypoint-initdb.d/
-
-# Expose MySQL port
-EXPOSE 3306
-
