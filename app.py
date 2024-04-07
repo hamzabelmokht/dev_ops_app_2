@@ -4,7 +4,7 @@ from flask_mysqldb import MySQL
 app = Flask(__name__)
 
 app.config['MYSQL_HOST'] = 'mysql'
-app.config['MYSQL_PORT'] = 3306  # Port for MySQL
+app.config['MYSQL_PORT'] = 3306  
 app.config['MYSQL_USER'] = 'root'
 app.config['MYSQL_PASSWORD'] = 'hamza'
 app.config['MYSQL_DB'] = 'DevOpsProject2'
@@ -26,4 +26,4 @@ def add():
     return render_template('index.html')
 
 if __name__ == '__main__':
-    app.run(host='0.0.0.0', port=5000, debug=True)
+    app.run(host='52.5.65.25', port=5000, debug=True)
