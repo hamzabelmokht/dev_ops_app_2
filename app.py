@@ -1,16 +1,13 @@
 from flask import Flask, render_template, request
-from flask_mysqldb import MySQL
-from asgiref.wsgi import WsgiToAsgi
+from flask_sqlalchemy import SQLAlchemy
 
 app = Flask(__name__)
+app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql://root:hamza@mysql/DevOpsProject2'
+db = SQLAlchemy(app)
 
-app.config['MYSQL_HOST'] = 'mysql'
-app.config['MYSQL_PORT'] = 3306  
-app.config['MYSQL_USER'] = 'root'
-app.config['MYSQL_PASSWORD'] = 'hamza'
-app.config['MYSQL_DB'] = 'DevOpsProject2'
-
-mysql = MySQL(app)
+class AppList(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    list = db.Column(db.String(255), nullable=False)
 
 @app.route('/')
 def index():
@@ -20,14 +17,10 @@ def index():
 def add():
     if request.method == 'POST':
         data = request.form['data']
-        cur = mysql.connection.cursor()
-        cur.execute("INSERT INTO app_list (list) VALUES (%s)", [data])
-        mysql.connection.commit()
-        cur.close()
+        new_list = AppList(list=data)
+        db.session.add(new_list)
+        db.session.commit()
     return render_template('index.html')
 
-asgi_app = WsgiToAsgi(app)
-
 if __name__ == '__main__':
-    import uvicorn
-    uvicorn.run(asgi_app, host='0.0.0.0', port=5000)
+    app.run(debug=True, host='0.0.0.0', port=5000)
