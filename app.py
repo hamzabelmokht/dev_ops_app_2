@@ -14,7 +14,12 @@ mysql = MySQL(app)
 
 @app.route('/')
 def index():
-    return render_template('index.html')  
+    cur = mysql.connection.cursor()
+    cur.execute("SELECT `list` FROM app_list")
+    items = cur.fetchall()  
+    cur.close()
+    
+    return render_template('index.html', items=items)
 
 @app.route('/add', methods=['POST'])
 def add():
@@ -29,9 +34,12 @@ def add():
 @app.route('/data', methods=['GET'])
 def get_data():
     cur = mysql.connection.cursor()
-    cur.execute("SELECT * FROM app_list")
+    cur.execute("SELECT `list` FROM app_list")
     items = cur.fetchall()  
     cur.close()
+    
+    print("Received items:", items)  
+
     return jsonify(items=items)
 
 asgi_app = WsgiToAsgi(app)
