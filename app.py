@@ -21,15 +21,15 @@ def index():
     
     return render_template('index.html', items=items)
 
-@app.route('/add', methods=['POST'])
-def add():
-    if request.method == 'POST':
-        data = request.form['data']
-        cur = mysql.connection.cursor()
-        cur.execute("INSERT INTO app_list (list) VALUES (%s)", [data])
-        mysql.connection.commit()
-        cur.close()
-    return render_template('index.html')
+@app.route('/data', methods=['POST'])
+def add_data():
+    data = request.form['data']
+    cur = mysql.connection.cursor()
+    cur.execute("INSERT INTO app_list (list) VALUES (%s)", [data])
+    mysql.connection.commit()
+    cur.close()
+    
+    return index()
 
 @app.route('/data', methods=['GET'])
 def get_data():

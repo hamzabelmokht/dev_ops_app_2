@@ -16,11 +16,13 @@
             border: 2px solid black;
             padding: 10px;
             margin-top: 20px;
+            display: inline-block;
         }
         .list-container {
             border: 2px solid black;
             padding: 10px;
             margin-top: 20px;
+            display: inline-block; 
         }
     </style>
 </head>
@@ -29,7 +31,7 @@
         <h1 style="font-weight: bold;">Dev Ops App Two</h1>
         <div class="form-container">
             <h3>Add Data:</h3>
-            <form action="/add" method="POST">
+            <form action="/data" method="POST">
                 <input type="text" name="data" placeholder="Enter data" required>
                 <button type="submit">Submit</button>
             </form>
@@ -38,7 +40,7 @@
             <h3>Stored Data:</h3>
             <ul>
                 {% for item in items %}
-                    <li>{{ item[1] }}</li>  
+                    <li>{{ item[0] }}</li>  
                 {% endfor %}
             </ul>
         </div>
