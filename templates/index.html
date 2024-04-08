@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dev Ops App 2</title>
+    <title>Dev Ops App Two</title>
     <style>
         body {
             background-color: lightblue;
@@ -11,6 +11,11 @@
         .container {
             margin-top: 50px;
             text-align: center;
+        }
+        .form-container {
+            border: 2px solid black;
+            padding: 10px;
+            margin-top: 20px;
         }
         .list-container {
             border: 2px solid black;
@@ -22,10 +27,13 @@
 <body>
     <div class="container">
         <h1 style="font-weight: bold;">Dev Ops App Two</h1>
-        <form action="/add" method="POST">
-            <input type="text" name="data" placeholder="Enter data">
-            <button type="submit">Submit</button>
-        </form>
+        <div class="form-container">
+            <h3>Add Data:</h3>
+            <form action="/add" method="POST">
+                <input type="text" name="data" placeholder="Enter data" required>
+                <button type="submit">Submit</button>
+            </form>
+        </div>
         <div class="list-container">
             <h3>Stored Data:</h3>
             <ul>
