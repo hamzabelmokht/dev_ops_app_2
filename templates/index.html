@@ -19,7 +19,7 @@
             top: 50px; 
             left: 50%;
             transform: translateX(-50%);
-            margin-bottom: 100px;
+            margin-bottom: 50px;
         }
         .list-container {
             padding: 10px;
@@ -30,7 +30,7 @@
 </head>
 <body>
     <div class="container">
-        <h1 style="font-weight: bold; margin-bottom: 20px;">Dev Ops App 2</h1> 
+        <h1 style="font-weight: bold; margin-bottom: 20px;">Dev Ops App Two</h1>
         <div class="form-container">
             <h3>Add Data:</h3>
             <form action="/data" method="POST">
@@ -39,7 +39,7 @@
             </form>
         </div>
         <div class="list-container">
-            <h3>Stored Data:</h3>
+            <h3 style="margin-top: 20px;">Stored Data:</h3> 
             <ul>
                 {% for item in items %}
                     <li>{{ item[0] }}</li>  
