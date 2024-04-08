@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request
+from flask import Flask, render_template, request, jsonify
 from flask_mysqldb import MySQL
 from asgiref.wsgi import WsgiToAsgi
 
@@ -14,11 +14,7 @@ mysql = MySQL(app)
 
 @app.route('/')
 def index():
-    cur = mysql.connection.cursor()
-    cur.execute("SELECT * FROM app_list")
-    items = cur.fetchall()  
-    cur.close()
-    return render_template('index.html', items=items)  
+    return render_template('index.html')  
 
 @app.route('/add', methods=['POST'])
 def add():
@@ -29,6 +25,14 @@ def add():
         mysql.connection.commit()
         cur.close()
     return render_template('index.html')
+
+@app.route('/data', methods=['GET'])
+def get_data():
+    cur = mysql.connection.cursor()
+    cur.execute("SELECT * FROM app_list")
+    items = cur.fetchall()  
+    cur.close()
+    return jsonify(items=items)
 
 asgi_app = WsgiToAsgi(app)
 
