@@ -14,7 +14,11 @@ mysql = MySQL(app)
 
 @app.route('/')
 def index():
-    return render_template('index.html')
+    cur = mysql.connection.cursor()
+    cur.execute("SELECT * FROM app_list")
+    items = cur.fetchall()  
+    cur.close()
+    return render_template('index.html', items=items)  
 
 @app.route('/add', methods=['POST'])
 def add():
